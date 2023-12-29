@@ -9,7 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "2",
+    "@ionic/vue": "^7.0.0-rc.5",
+    "@ionic/vue-router": "^7.0.0-rc.5",
+    "@maskito/core": "^1.9.0",
+    "@maskito/vue": "^1.9.0",
+    "axios": "^1.6.3",
+    "pinia": "^2.1.7",
     "vue": "^3.3.11",
+    "vue-router": "4",
     "vue-tg": "^0.1.1"
   },
   "devDependencies": {
