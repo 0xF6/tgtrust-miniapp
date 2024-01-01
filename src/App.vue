@@ -1,27 +1,29 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
 
+router.push("/auth");
+
+
+try { (window as any).Telegram.WebApp.expand(); } catch { }
+</script>
 <template>
-  <div>
-    <img src="/icon_final.svg" class="logo" alt="Vite logo" />
-  </div>
-  <HelloWorld />
+  <ion-app>
+    <ion-router-outlet  />
+  </ion-app>
 </template>
 
-<style scoped>
-.logo {
-  max-width: 100%;
-  height: 100px;
-  scale: 7;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 1em #646cffaa);
+
+.fade-enter-active {
+  transition-delay: .25s;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 1em #42b883aa);
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>

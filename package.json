@@ -15,12 +15,15 @@
     "@maskito/core": "^1.9.0",
     "@maskito/vue": "^1.9.0",
     "axios": "^1.6.3",
+    "dayjs": "^1.11.10",
+    "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.11",
-    "vue-router": "4",
-    "vue-tg": "^0.1.1"
+    "vue-router": "4"
   },
   "devDependencies": {
+    "@types/telegram-web-app": "^6.9.3",
     "@vitejs/plugin-vue": "^4.5.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
