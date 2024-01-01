@@ -1,11 +1,16 @@
 <script lang="ts" setup>
+import { nextTick } from "vue";
+import { useRouter } from "vue-router";
 import { useIonRouter } from "@ionic/vue";
 const router = useIonRouter();
+const router2 = useRouter();
 
-router.push("/auth");
-
-
-try { (window as any).Telegram.WebApp.expand(); } catch { }
+nextTick(() => {
+  console.log("router", router);
+  console.log("router2", router2);
+  try { (window as any).Telegram.WebApp.expand(); } catch { }
+  router.push("/auth");
+});
 </script>
 <template>
   <ion-app>
