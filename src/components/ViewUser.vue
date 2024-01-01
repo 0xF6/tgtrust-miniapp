@@ -143,14 +143,18 @@ async function getScreenshot() {
 
 
     sharing.value = true;
-    
-    document.getElementsByClassName("card-main")[0].style.padding = "1px";
+    const el = document.getElementsByClassName("card-main")[0];
+
+    // guard for screenshots
+    (el as any).style.padding = "1px";
     const a = await toPng(document.body, {
         quality: 1
     });
-    sharing.value = false;
-    document.getElementsByClassName("card-main")[0].style.padding = "0px";
+    (el as any).style.padding = "0px";
     
+
+    sharing.value = false;
+
     const shareResult = await store.shareResult(a);
 
     if (shareResult != "ok") {

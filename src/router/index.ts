@@ -1,8 +1,5 @@
 import { createRouter, createMemoryHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import AuthPage from "./../components/AuthPage.vue";
-import ViewUser from "./../components/ViewUser.vue";
-import MainView from "./../components/MainView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -13,19 +10,19 @@ const routes: Array<RouteRecordRaw> = [
     {
       path: '/auth',
       name: 'Auth',
-      component: AuthPage,
+      component: import('./../components/AuthPage.vue'),
       meta: { transition: 'slide' },
     },
     {
         path: '/main',
         name: 'MainView',
-        component: MainView,
+        component: import('./../components/MainView.vue'),
         meta: { transition: 'slide' },
     },
     {
         path: '/user/:username',
         name: 'ViewUser',
-        component: ViewUser,
+        component: import("./../components/ViewUser.vue"),
     }
 ];
 

@@ -1,6 +1,5 @@
 declare var Telegram: Telegram;
 
-type Color = string | false;
 
 interface Telegram {
     WebApp: WebApp;
