@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-
+import authView from "./../components/AuthPage.vue";
 const routes: Array<RouteRecordRaw> = [
     {
       path: '/',
@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     {
       path: '/auth',
       name: 'Auth',
-      component: import('./../components/AuthPage.vue'),
+      component: authView,
       meta: { transition: 'slide' },
     },
     {
