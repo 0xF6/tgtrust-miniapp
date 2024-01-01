@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { useIonRouter } from "@ionic/vue";
+const router = useIonRouter();
 
 router.push("/auth");
 
