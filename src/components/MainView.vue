@@ -13,11 +13,12 @@
             </p>
             <div class="card">
 
-                <ion-item>
-                    <ion-input @ionInput="onInput($event)" :value="userInputUsername" type="text" class="ion-input-username"
-                        label="@" placeholder="username"></ion-input>
-                        <ion-note slot="end">100 🪙</ion-note>
-                </ion-item>
+                <vs-input v-model="userInputUsername" placeholder="username" style="width: 100%;" color="#7D33FF">
+      <template #icon>
+        <vs-icon> <vs-icon-Hashtag /> </vs-icon>
+      </template>
+    </vs-input>
+                
                 <br/>
                 <p class="read-the-docs">Every request consume 100 🪙</p>
                 <p class="read-the-docs">Coins are being restored every day</p>
@@ -64,11 +65,6 @@ onIonViewWillLeave(() => {
     miniApp.MainButton.hide();
     miniApp.MainButton.offClick(goToUserView);
 });
-
-
-function onInput(event: CustomEvent) {
-    userInputUsername.value = event.detail.value;
-}
 
 async function goToUserView() {
     console.error("goToUserView")

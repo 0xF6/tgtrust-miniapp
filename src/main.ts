@@ -21,6 +21,10 @@ import '@ionic/vue/css/display.css';
 import * as IonComponents from '@ionic/vue';
 import VueCountdown from '@chenfengyuan/vue-countdown';
 
+import Vuesax from 'vuesax-alpha';
+import 'vuesax-alpha/dist/index.css';
+import 'vuesax-alpha/theme-chalk/dark/css-vars.css';
+import * as VuesaxAlphaIconsVue from '@vuesax-alpha/icons-vue'
 
 init({
     dsn: "https://1f759484ce6d671b7d09f91e0a51e5f5@o958881.ingest.sentry.io/4506498460286976",
@@ -47,13 +51,17 @@ Object.keys(IonComponents).forEach(key => {
         app.component(key, (IonComponents as any)[key]);
     }
 });
+for (const [key, component] of Object.entries(VuesaxAlphaIconsVue)) {
+  app.component(`VsIcon${key}`, component as any)
+}
 
 app.component(VueCountdown.name, VueCountdown);
 
 
 app
-    .use(pinia)
-    .use(IonicVue)
-    .use(router)
-    .directive("maskito", maskito)
-    .mount('#app')
+  .use(Vuesax)
+  .use(pinia)
+  .use(IonicVue)
+  .use(router)
+  .directive("maskito", maskito)
+  .mount('#app')

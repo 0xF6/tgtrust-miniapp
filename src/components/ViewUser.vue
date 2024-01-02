@@ -1,12 +1,8 @@
 
 <template>
-    <ion-page>
+    <ion-page @ref="page">
         <ion-content class="ion-padding">
             <Logo />
-
-            <div class="card" v-if="!selectedUser">
-                <ion-progress-bar type="indeterminate"></ion-progress-bar>
-            </div>
 
             <div class="card card-main" v-if="selectedUser" style="padding: unset !important;">
                 <div class="profile-card js-profile-card">
@@ -24,8 +20,11 @@
                                 :src="convertAvatarUrl(selectedUser.avatar.url)" alt="profile card">
                         </a>
                         <a v-else>
-                            <img crossorigin="anonymous" style=" cursor: pointer;" @click="openUserLink"
-                                :src="`https://eu.ui-avatars.com/api/?name=${selectedUser.name}`" alt="profile card">
+                            <vs-avatar history history-gradient shape="circle" style="cursor: pointer;" size="150" @click="openUserLink" alt="profile card">
+                                <vs-icon size="50">
+                                    <vs-icon-user />
+                                </vs-icon>
+                            </vs-avatar>
                         </a>
                     </div>
 
@@ -45,16 +44,25 @@
                                     {{ getTrustNumber(selectedUser.trustIndex) }}
                                 </div>
                                 <div class="profile-card-inf__txt">
-                                    <ion-chip color="tertiary">Trust Index</ion-chip>
+                                    <vs-button type="gradient" size="small" color="#7d33ff" active>
+                                        Trust Index
+                                    </vs-button>
                                 </div>
                             </div>
                             <div class="profile-card-inf__item" >
                                 <div :class="`profile-card-inf__title ${getTrustStyle()}`">
-                                    {{ getTrustLevel(selectedUser.trustIndex) }}<b style="font-size: xx-small;">level</b>
+                                    {{ getTrustLevel(selectedUser.trustIndex) }}<b style="font-size: small;"> level</b>
                                 </div>
-                                <div class="profile-card-inf__txt">
-                                    <ion-chip  color="tertiary">Linear Trust</ion-chip>
-                                </div>
+
+                                <vs-tooltip color="#7d33ff" type="border-thick">
+                                    <div class="profile-card-inf__txt">
+                                        <vs-button type="gradient" size="small" color="#7d33ff" active >
+                                            Linear Trust
+                                        </vs-button>
+                                    </div>
+                                    <template #content> Linear index is a security level of user </template>
+                                </vs-tooltip>
+                                
                             </div>
                         
                         </div>
@@ -79,7 +87,7 @@ import { onIonViewDidEnter, onIonViewWillLeave, toastController } from '@ionic/v
 import { miniAppUserTrustResponse, useMainStore } from '../stores/MainStore';
 import { useMiniApp } from "../stores/miniApp";
 import { toPng } from "html-to-image";
-
+import { VsLoadingFn } from "vuesax-alpha";
 
 const router = useRouter();
 const miniApp = useMiniApp();
@@ -92,7 +100,20 @@ const selectedUser = ref(null as miniAppUserTrustResponse | null);
 const sharing = ref(false);
 const isVideoAvatar = computed(() => selectedUser.value?.avatar?.extensions == "mp4");
 
+const page = ref<HTMLElement>();
 
+onIonViewDidEnter(() => {
+    getTrustFor();
+});
+onIonViewWillLeave(() => {
+    miniApp.BackButton.offClick(goBack).hide();
+    miniApp.MainButton.hide();
+    miniApp.MainButton.offClick(getScreenshot);
+});
+
+const loader = VsLoadingFn({   
+    target: page
+})
 
 
 /*public TrustVerdict GetVerdict(int index) => index switch
@@ -133,24 +154,12 @@ function getTrustNumber(index: number) {
     return `${index}`;
 }
 
-onIonViewDidEnter(() => {
-    miniApp.BackButton.onClick(goBack).show();
-    getTrustFor();
 
-    const btn = miniApp.MainButton;
 
-    btn.color = "#800080"
-    btn.show().enable().setText("Share Result").onClick(getScreenshot);
-});
 function convertAvatarUrl(url: string): string {
     console.warn(url, store.backendUrl);
     return new URL(url, `https://${store.backendUrl}`).href;
 }
-onIonViewWillLeave(() => {
-    miniApp.BackButton.offClick(goBack).hide();
-    miniApp.MainButton.hide();
-    miniApp.MainButton.offClick(getScreenshot);
-});
 
 function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -173,6 +182,7 @@ async function getTrustFor() {
     const r = await store.getTrustFor(username);
 
     if (!r || r === "not_found" || r === "balance_not_enough") {
+        loader.close();
         console.error("error");
         let msg = "";
 
@@ -194,8 +204,17 @@ async function getTrustFor() {
         router.back();
         return;
     }
-    console.log("Success", r);
-    selectedUser.value = r;
+    setTimeout(() => {
+        console.log("Success", r);
+        loader.close();
+        selectedUser.value = r;
+        miniApp.BackButton.onClick(goBack).show();
+
+        const btn = miniApp.MainButton;
+
+        btn.color = "#800080"
+        btn.show().enable().setText("Share Result").onClick(getScreenshot);
+    }, 500);
 }
 
 async function getScreenshot() {
@@ -220,7 +239,8 @@ async function getScreenshot() {
     // guard for screenshots
     (el as any).style.padding = "1px";
     const a = await toPng(document.body, {
-        quality: 1
+        quality: 2,
+        pixelRatio: 5
     });
     (el as any).style.padding = "0px";
 

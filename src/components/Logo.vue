@@ -88,8 +88,9 @@ function logoClick() {
 }
 </script>
 
-<style scoped>ion-item {
-    filter: drop-shadow(0 0 55px #646cffaa);
+<style scoped>
+ion-item {
+    filter: drop-shadow(0 0 55px #646cffaa) drop-shadow(0 0 55px #646cffaa);
 }
 
 .logosvg {
@@ -104,13 +105,13 @@ function logoClick() {
 }
 
 .svg-container {
-    filter: drop-shadow(0 0 45px #646cffaa);
+    filter: drop-shadow(0 0 45px #646cffaa) drop-shadow(0 0 55px #646cffaa);
     width: 100%;
     height: 100px;
 }
 
 .dev-span {
-    transform: rotate(35deg) translate(230px, -170px);
+    transform: rotate(35deg) translate(270px, -150px);
     position: absolute;
     transform-origin: top;
     z-index: 1;

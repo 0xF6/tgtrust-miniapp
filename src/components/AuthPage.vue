@@ -4,20 +4,18 @@
         <ion-content class="ion-padding">
             <Logo />
             <br/>
-            <ion-card>
-                <ion-card-content>
-                    This service allows you to get the trust factor in the user.
-                    <br />
-                    Trust factor which depends on a lot of things
-                    <br />
-                    Which allows you to identify advertising bots, spammers and scammers
-                    <br />
-                </ion-card-content>
-
-                <ion-card-content>
-                    To get started, log in
-                </ion-card-content>
-            </ion-card>
+            <vs-alert >
+                This service allows you to get the <b>trust factor</b> in the user.
+                <br/>
+                Trust factor which depends on a lot of things
+                <br/>
+                Which allows you to identify advertising <b>bots, spammers and scammers</b>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                To get started, log in 
+            </vs-alert>
         </ion-content>
         <ion-toolbar>
             <p class="read-the-docs">By signing in, you agree to the processing of Personal Data</p>
@@ -31,7 +29,7 @@ import Logo from "./Logo.vue";
 import { onIonViewWillLeave, onIonViewDidEnter } from "@ionic/vue";
 import { useMainStore } from '../stores/MainStore';
 import { useIonRouter } from "@ionic/vue";
-import { useMiniApp } from "../stores/miniApp";
+import { useMiniApp } from "../stores/miniApp";  
 
 const store = useMainStore();
 const miniApp = useMiniApp();

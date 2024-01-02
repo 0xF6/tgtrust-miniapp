@@ -311,3 +311,7 @@ body.dark {
   -webkit-margin-end: 1px !important;
   margin-inline-end: 1px !important;
 }
+
+ion-chip {
+  padding: 10px !important;
+} 
