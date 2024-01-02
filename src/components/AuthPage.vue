@@ -3,7 +3,7 @@
     <ion-page>
         <ion-content class="ion-padding">
             <Logo />
-            
+            <br/>
             <ion-card>
                 <ion-card-content>
                     This service allows you to get the trust factor in the user.

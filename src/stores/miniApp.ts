@@ -1,3 +1,4 @@
+/// <reference types="@types/telegram-web-app" />
 import { defineStore } from "pinia";
 
 export const useMiniApp = defineStore('miniApp', () => {

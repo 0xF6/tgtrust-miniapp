@@ -4,6 +4,8 @@ import { computed, ref } from 'vue'
 
 import dayjs from 'dayjs';
 import utcSupport from "dayjs/plugin/utc";
+import { setUser } from "@sentry/vue";
+
 
 dayjs.extend(utcSupport);
 
@@ -21,6 +23,7 @@ export interface miniAppUserTrustResponse {
     verdict: "VerifiedStage" | "CertifiedStage" | "PerfectStage" | "GoodStage" | "LowerStage" | "BadStage" | "AwfulStage";
     trustIndex: number;
     avatar: { url: string, extensions: string } | null;
+    thumbnail: { url: string, extensions: string } | null;
     username: string;
     name: string,
     periodData: { totalCoins: number, lastClaimTime: string }
@@ -67,6 +70,11 @@ export const useMainStore = defineStore('main', () => {
             return;
         }
         const user = (resp.data as miniAppUser);
+
+        setUser({
+            id: user.id,
+            username: user.username
+        });
 
         totalCoins.value = user.coins;
         lastClaimTime.value = +user.lastClaimedCoins;
