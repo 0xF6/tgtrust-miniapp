@@ -79,7 +79,6 @@ import { onIonViewDidEnter, onIonViewWillLeave, toastController } from '@ionic/v
 import { miniAppUserTrustResponse, useMainStore } from '../stores/MainStore';
 import { useMiniApp } from "../stores/miniApp";
 import { toPng } from "html-to-image";
-import { star } from 'ionicons/icons';
 
 
 const router = useRouter();
