@@ -13,20 +13,20 @@ dayjs.extend(utcSupport);
 export interface miniAppUser {
     id: string;
     username: string;
-    userId: number;
+    user_id: number;
     firstLastName: string;
     coins: number;
-    lastClaimedCoins: string;
+    last_claimed_coins: string;
 }
 
 export interface miniAppUserTrustResponse {
     verdict: "VerifiedStage" | "CertifiedStage" | "PerfectStage" | "GoodStage" | "LowerStage" | "BadStage" | "AwfulStage";
-    trustIndex: number;
+    trust_index: number;
     avatar: { url: string, extensions: string } | null;
     thumbnail: { url: string, extensions: string } | null;
     username: string;
     name: string,
-    periodData: { totalCoins: number, lastClaimTime: string }
+    period_data: { total_coins: number, last_claim_time: string }
 }
 
 
@@ -161,8 +161,8 @@ export const useMainStore = defineStore('main', () => {
             return null;
         }
 
-        totalCoins.value = data.periodData.totalCoins;
-        lastClaimTime.value = +data.periodData.lastClaimTime;
+        totalCoins.value = data.period_data.total_coins;
+        lastClaimTime.value = +data.period_data.last_claim_time;
 
         return data;
     }

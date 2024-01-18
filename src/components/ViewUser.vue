@@ -41,7 +41,7 @@
                             
                             <div class="profile-card-inf__item">
                                 <div :class="`profile-card-inf__title ${getTrustStyle()}`">
-                                    {{ getTrustNumber(selectedUser.trustIndex) }}
+                                    {{ getTrustNumber(selectedUser.trust_index) }}
                                 </div>
                                 <div class="profile-card-inf__txt">
                                     <vs-button type="gradient" size="small" color="#7d33ff" active>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="profile-card-inf__item" >
                                 <div :class="`profile-card-inf__title ${getTrustStyle()}`">
-                                    {{ getTrustLevel(selectedUser.trustIndex) }}<b style="font-size: small;"> level</b>
+                                    {{ getTrustLevel(selectedUser.trust_index) }}<b style="font-size: small;"> level</b>
                                 </div>
 
                                 <vs-tooltip color="#7d33ff" type="border-thick">
@@ -139,7 +139,7 @@ function getTrustLevel(index: number) {
 }
 
 function getTrustStyle() {
-    const index = selectedUser.value?.trustIndex ?? 0;
+    const index = selectedUser.value?.trust_index ?? 0;
     if (index >= 200) return "verified";
     if (index >= 40) return "superperfect"
     if (index >= 30) return "perfect"
