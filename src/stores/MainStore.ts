@@ -77,7 +77,7 @@ export const useMainStore = defineStore('main', () => {
         });
 
         totalCoins.value = user.coins;
-        lastClaimTime.value = +user.lastClaimedCoins;
+        lastClaimTime.value = +user.last_claimed_coins;
 
         console.log(`@me result, totalCoins: ${totalCoins.value}, lastClaimTime: ${lastClaimTime.value}`)
         meId.value = user.id;
