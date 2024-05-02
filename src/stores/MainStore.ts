@@ -39,7 +39,7 @@ export const useMainStore = defineStore('main', () => {
     const meId = ref('');
 
     const devUrl = ref("dev_trust.0xf6.moe");
-    const prodUrl = ref("trust.0xf6.moe");
+    const prodUrl = ref("telegram.xwaifu.app");
 
 
     const backendUrl = ref(prodUrl.value);

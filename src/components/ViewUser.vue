@@ -212,7 +212,7 @@ async function getTrustFor() {
 
         const btn = miniApp.MainButton;
 
-        btn.color = "#800080"
+        btn.color = "#8ffe09"
         btn.show().enable().setText("Share Result").onClick(getScreenshot);
     }, 500);
 }
